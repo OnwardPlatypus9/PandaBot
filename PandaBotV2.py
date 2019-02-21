@@ -119,7 +119,6 @@ async def staff(ctx):
 # Mcping
 @bot.command()
 async def mcping(ctx):
-        print('true')
         server = MinecraftServer.lookup("pandamium.eu:25565")
         status = server.status()
         await ctx.channel.send(
@@ -195,7 +194,7 @@ async def votestatus(ctx):
 @bot.command()
 async def townapprove(ctx):
     global waitstaff, totalvotesfortown, voter1, voter2, voter3
-    if "staff" in [y.name.lower() for y in ctx.author.roles]:
+    if "Staff" in [y.name.lower() for y in ctx.author.roles]:
         if waitstaff == 1:
             guild = ctx.message.guild
             await guild.create_text_channel(townreq)
