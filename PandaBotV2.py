@@ -194,8 +194,11 @@ async def votestatus(ctx):
 @bot.command()
 async def townapprove(ctx):
     global waitstaff, totalvotesfortown, voter1, voter2, voter3
+    print('a')
     if "staff" in [y.name.lower() for y in ctx.author.roles]:
+        print('b')
         if waitstaff == 1:
+            print('c')
             guild = ctx.message.guild
             await guild.create_text_channel(townreq)
             waitstaff = 0
@@ -203,6 +206,7 @@ async def townapprove(ctx):
             voter2 = 0
             voter3 = 0
             totalvotesfortown = 0
+            print('d')
             await ctx.channel.send('Town Approved')
             return waitstaff, voter1, voter2, voter3, totalvotesfortown
         else:
