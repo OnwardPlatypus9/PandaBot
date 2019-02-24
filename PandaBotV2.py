@@ -34,6 +34,7 @@ bot = commands.Bot(command_prefix="!", status=discord.Status.online, activity=di
 Client = discord.Client()
 bot.remove_command('help')
 
+
 # Boot Up
 @bot.event
 async def on_ready():
@@ -119,14 +120,11 @@ async def staff(ctx):
 # Mcping
 @bot.command()
 async def mcping(ctx):
-        server = MinecraftServer.lookup("pandamium.eu:25565")
-        status = server.status()
-        await ctx.channel.send(
-            "There Are Currently {0} Players On Pandamium.eu With A Ping Of {1} ms".format(status.players.online,
-                                                                                           round(status.latency)))
-        print(f"!mcping Executed")
-
-
+    server = MinecraftServer.lookup("pandamium.eu:25565")
+    status = server.status()
+    await ctx.channel.send(
+        "There Are Currently {0} Players On Pandamium.eu".format(status.players.online))
+    print(f"!mcping Executed")
 
 
 # A Town Channel Creation Thing
@@ -145,11 +143,13 @@ async def requesttown(ctx):
     await ctx.channel.send('Town Requested')
     return voter1, voter2, voter3, totalvotesfortown
 
+
 totalvotesfortown = 0
 voter1 = 0
 voter2 = 0
 voter3 = 0
 waitstaff = 0
+
 
 # The Voting Command
 @bot.command()
@@ -185,10 +185,12 @@ async def votefor(ctx):
     else:
         await ctx.channel.send('Cannot Vote Again, Awaiting Staff Approval')
 
+
 # self-Explainitory, Vote Status
 @bot.command()
 async def votestatus(ctx):
     await ctx.channel.send(f"Currently {townreq} Has {totalvotesfortown} Votes")
+
 
 # Staff Town Approval Command
 @bot.command()
@@ -219,5 +221,6 @@ async def townapprove(ctx):
 async def on_message(message):
     if message.channel.name == 'bot-commands':
         await bot.process_commands(message)
+
 
 bot.run('NTQxMTA5MjQ1MzU4MTEyNzY4.Dzaq4Q.9GfUYyfFuFtxuwEYmzH5mWUdqdQ')
